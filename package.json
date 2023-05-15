@@ -1,0 +1,75 @@
+{
+  "name": "maripos",
+  "version": "0.1.0",
+  "description": "A point of sale software based on electron and react",
+  "main": "./out/main/index.js",
+  "author": {
+    "name": "Jhoselin Ramirez",
+    "email": "jhoselin.ramirez92@gmail.com"
+  },
+  "keywords": [
+    "pos",
+    "point of sale",
+    "electron",
+    "react",
+    "open software"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JhoselinRam/maripos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JhoselinRam/maripos/issues"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:win": "npm run build && electron-builder --win --config",
+    "build:mac": "electron-vite build && electron-builder --mac --config",
+    "build:linux": "electron-vite build && electron-builder --linux --config",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "1.0.3",
+    "@electron-toolkit/utils": "1.0.2",
+    "electron-updater": "5.3.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/tsconfig": "1.0.1",
+    "@electron/notarize": "1.2.3",
+    "@testing-library/react": "14.0.0",
+    "@types/node": "20.1.4",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@typescript-eslint/eslint-plugin": "5.59.5",
+    "@typescript-eslint/parser": "5.59.5",
+    "@vitejs/plugin-react": "4.0.0",
+    "autoprefixer": "10.4.14",
+    "cssnano": "6.0.1",
+    "electron": "24.3.0",
+    "electron-builder": "23.6.0",
+    "electron-vite": "1.0.22",
+    "eslint": "8.40.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.32.2",
+    "happy-dom": "9.18.3",
+    "postcss": "8.4.23",
+    "prettier": "2.8.8",
+    "prettier-plugin-tailwindcss": "0.2.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4",
+    "vite": "4.3.5",
+    "vitest": "0.31.0"
+  }
+}
