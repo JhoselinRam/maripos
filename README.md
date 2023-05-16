@@ -14,8 +14,8 @@ Tech stack:
 |:-----:|:-------:|:------:|
 
 #### Front-end
-|![react](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black&style=flat) |![typescript](https://img.shields.io/badge/-Typescript-3178C6?logo=typescript&logoColor=white&style=flat) | ![tailwindcss](https://img.shields.io/badge/-Tailwindcss-06B6D4?logo=tailwindcss&logoColor=white&style=flat)|
-|---------|----------|---------|
+|![react](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black&style=flat) |![typescript](https://img.shields.io/badge/-Typescript-3178C6?logo=typescript&logoColor=white&style=flat) | ![tailwindcss](https://img.shields.io/badge/-Tailwindcss-06B6D4?logo=tailwindcss&logoColor=white&style=flat)|![redux](https://img.shields.io/badge/-Redux-764ABC?logo=redux&logoColor=white&style=flat)
+|---------|----------|---------|-------|
 
 #### Back-end
 |![node](https://img.shields.io/badge/-Node-339933?logo=nodedotjs&logoColor=white&style=flat)|![mongo](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white&style=flat)|
