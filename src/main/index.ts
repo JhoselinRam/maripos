@@ -3,6 +3,8 @@ import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 
+//--------------- Create Window -------------------
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -19,10 +21,12 @@ function createWindow(): void {
     }
   });
 
+  //Show window when ready
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
   });
 
+  //Open only native windows
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
     return { action: 'deny' };
@@ -36,6 +40,9 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
   }
 }
+
+//-------------------------------------------------
+//-------------------------------------------------
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -68,6 +75,3 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-// In this file you can include the rest of your app"s specific main process
-// code. You can also put them in separate files and require them here.
