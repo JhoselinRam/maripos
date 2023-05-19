@@ -3,8 +3,9 @@ import { AllThemes } from './themes/themes-types';
 import { LocalStore, LocalStoreObject } from './local-theme-types';
 import { AllLanguages } from './language/languaje';
 import storeThemes from './themes/themes';
+import { BrowserWindow } from 'electron';
 
-function localStore(): LocalStoreObject {
+function localStore(window: BrowserWindow): LocalStoreObject {
   //Local store schema
   const schema: Schema<LocalStore> = {
     lang: {
@@ -26,7 +27,7 @@ function localStore(): LocalStoreObject {
   });
 
   //Theme functions
-  const themes = storeThemes(store);
+  const themes = storeThemes(store, window);
 
   //Retusrns all assets
   return {

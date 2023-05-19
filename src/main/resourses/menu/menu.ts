@@ -1,26 +1,25 @@
-const { Menu, BrowserWindow } = require('electron');
+import { Menu, nativeTheme } from 'electron';
 
-function createMenu(window: typeof BrowserWindow): void {
-  const menu = Menu.buildfromTemplate([
+function createMenu(): void {
+  const menu = Menu.buildFromTemplate([
     {
       label: 'Theme',
       submenu: [
         {
-          label: 'system',
-          click: () => window.webContents.send('set-theme', 'system')
+          label: 'System',
+          click: () => (nativeTheme.themeSource = 'system')
         },
         {
-          label: 'light',
-          click: () => window.webContents.send('set-theme', 'light')
+          label: 'Light',
+          click: () => (nativeTheme.themeSource = 'light')
         },
         {
-          label: 'dark',
-          click: () => window.webContents.send('set-theme', 'dark')
+          label: 'Dark',
+          click: () => (nativeTheme.themeSource = 'dark')
         }
       ]
     }
   ]);
-
   Menu.setApplicationMenu(menu);
 }
 
