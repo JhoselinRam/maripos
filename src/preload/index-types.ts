@@ -2,7 +2,7 @@ import { Theme } from '../main/resourses/local-storage/themes/themes-types';
 
 export interface PreloadApi {
   theme: {
-    handleTheme: (callback: HandleThemeCallback) => void;
+    initialTheme: () => Promise<Theme>;
   };
 }
 

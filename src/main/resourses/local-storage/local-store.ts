@@ -1,40 +1,38 @@
 import Store, { Schema } from 'electron-store';
 import { AllThemes } from './themes/themes-types';
-import { LocalStore } from './local-theme-types';
+import { LocalStore, LocalStoreObject } from './local-theme-types';
 import { AllLanguages } from './language/languaje';
-import { nativeTheme } from 'electron';
+import storeThemes from './themes/themes';
 
-//------------------ Schema -----------------------
+function localStore(): LocalStoreObject {
+  //Local store schema
+  const schema: Schema<LocalStore> = {
+    lang: {
+      type: 'string',
+      default: 'system',
+      enum: AllLanguages
+    },
+    theme: {
+      type: 'string',
+      default: 'system',
+      enum: AllThemes
+    }
+  };
 
-const schema: Schema<LocalStore> = {
-  //Aplication lenguaje
-  lang: {
-    type: 'string',
-    default: 'system',
-    enum: AllLanguages
-  },
-  //Aplication theme
-  theme: {
-    type: 'string',
-    default: 'system',
-    enum: AllThemes
-  }
-};
+  //Store object
+  const store = new Store({
+    encryptionKey: import.meta.env.MAIN_VITE_STORE_KEY,
+    schema
+  });
 
-//------------------- Store -----------------------
+  //Theme functions
+  const themes = storeThemes(store);
 
-const localStore = new Store({
-  encryptionKey: import.meta.env.MAIN_VITE_STORE_KEY,
-  schema
-});
-
-//-------------------------------------------------
-//----------------- Set Theme ---------------------
-
-export function setThemeFromStoreValue(): void {
-  nativeTheme.themeSource = localStore.get('theme');
+  //Retusrns all assets
+  return {
+    store,
+    ...themes
+  };
 }
-
-//-------------------------------------------------
 
 export default localStore;

@@ -1,8 +1,8 @@
-import { app, shell, BrowserWindow, nativeTheme } from 'electron';
+import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
-import { setThemeFromStoreValue } from './resourses/local-storage/local-store';
 import icon from '../../resources/icon.png?asset';
+import localStore from './resourses/local-storage/local-store';
 
 //--------------- Create Window -------------------
 
@@ -45,7 +45,7 @@ function createWindow(): BrowserWindow {
 }
 
 //-------------------------------------------------
-//-------------------------------------------------
+//----------------- When Ready --------------------
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -53,6 +53,8 @@ function createWindow(): BrowserWindow {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron');
+
+  const storeUtils = localStore();
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -62,16 +64,13 @@ app.whenReady().then(() => {
   });
 
   //Creates the window
-  const window = createWindow();
+  createWindow();
 
-  //Send the current theme
-  setThemeFromStoreValue();
-  setTimeout(() => {
-    window.webContents.send(
-      'set-theme',
-      nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
-    );
-  }, 5000);
+  //Set the app theme manually at startup
+  storeUtils.setThemeFromStoreValue();
+
+  //Listen to initial theme
+  ipcMain.handle('theme:init', storeUtils.themeUsed);
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -81,7 +80,7 @@ app.whenReady().then(() => {
 });
 
 //-------------------------------------------------
-//-------------------------------------------------
+//---------------- Other Events -------------------
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

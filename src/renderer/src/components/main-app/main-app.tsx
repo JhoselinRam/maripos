@@ -6,10 +6,13 @@ function MainApp(): JSX.Element {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
 
+  async function initialTheme(): Promise<void> {
+    const theme = await window.api.theme.initialTheme();
+    dispatch(setTheme(theme));
+  }
+
   useEffect(() => {
-    window.api.theme.handleTheme((_event, theme) => {
-      dispatch(setTheme(theme));
-    });
+    initialTheme();
   }, []);
   return <h1 className="bg-purple-300 dark:bg-gray-600">{theme}</h1>;
 }

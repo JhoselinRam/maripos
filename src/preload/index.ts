@@ -1,13 +1,11 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
-import { HandleThemeCallback, PreloadApi } from './index-types';
+import { PreloadApi } from './index-types';
 
 // Custom APIs for renderer
 const api: PreloadApi = {
   theme: {
-    handleTheme: (callback: HandleThemeCallback): void => {
-      ipcRenderer.on('set-theme', callback);
-    }
+    initialTheme: () => ipcRenderer.invoke('theme:init')
   }
 };
 
