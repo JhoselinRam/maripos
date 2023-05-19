@@ -1,9 +1,10 @@
-const { Store } = require('electron-store');
-const { AllThemes } = require('./themes/themes-types');
+import Store, { Schema } from 'electron-store';
+import { AllThemes } from './themes/themes-types';
+import { LocalStore } from './local-theme-types';
 
 //------------------ Schema -----------------------
 
-const schema = {
+const schema: Schema<LocalStore> = {
   //Aplication lenguaje
   lang: {
     type: 'string',
@@ -13,15 +14,15 @@ const schema = {
   theme: {
     type: 'string',
     default: 'system',
-    enum: AllThemes
+    enum: AllThemes as string[]
   }
 };
 
 //------------------- Store -----------------------
 
 const store = new Store({
-  schema,
-  encryptionKey: import.meta.env.MAIN_VITE_STORE_KEY
+  encryptionKey: import.meta.env.MAIN_VITE_STORE_KEY,
+  schema
 });
 
 //-------------------------------------------------
