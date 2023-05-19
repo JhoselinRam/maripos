@@ -1,7 +1,7 @@
-import { app, shell, BrowserWindow } from 'electron';
+import { app, shell, BrowserWindow, nativeTheme } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
-import store from './resourses/local-storage/local-store';
+import { setThemeFromStoreValue } from './resourses/local-storage/local-store';
 import icon from '../../resources/icon.png?asset';
 
 //--------------- Create Window -------------------
@@ -64,7 +64,14 @@ app.whenReady().then(() => {
   //Creates the window
   const window = createWindow();
 
-  window.webContents.send('setTheme', store.);
+  //Send the current theme
+  setThemeFromStoreValue();
+  setTimeout(() => {
+    window.webContents.send(
+      'set-theme',
+      nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
+    );
+  }, 5000);
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
