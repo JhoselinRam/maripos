@@ -18,10 +18,11 @@ function storeThemes(store: Store<LocalStore>, window: BrowserWindow): StoreThem
   }
 
   //-------------------------------------------------
-  //-------------------------------------------------
+  //---------------- On Updated ---------------------
 
   nativeTheme.on('updated', () => {
     window.webContents.send('theme:update', nativeTheme.shouldUseDarkColors ? 'dark' : 'light');
+    store.set('theme', nativeTheme.themeSource);
   });
 
   //-------------------------------------------------
