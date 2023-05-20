@@ -20,6 +20,7 @@ function createMenu(): void {
       ]
     }
   ]);
+
   Menu.setApplicationMenu(menu);
 }
 

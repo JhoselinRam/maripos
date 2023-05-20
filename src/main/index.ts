@@ -65,8 +65,10 @@ app.whenReady().then(() => {
   //Creates the window
   const window = createWindow();
 
+  //Creates the store utilities
   const storeUtils = localStore(window);
 
+  //Creates the menu bar
   createMenu();
 
   //Set the app theme manually at startup
