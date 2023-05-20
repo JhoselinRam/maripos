@@ -1,4 +1,4 @@
-import { Language } from './language/languaje';
+import { Language } from './language/languaje-types';
 import { StoreThemes, Theme } from './themes/themes-types';
 import Store from 'electron-store';
 

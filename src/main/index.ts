@@ -76,6 +76,7 @@ app.whenReady().then(() => {
 
   //Listen to initial theme
   ipcMain.handle('theme:init', storeUtils.themeUsed);
+  //Listen to initial language
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
