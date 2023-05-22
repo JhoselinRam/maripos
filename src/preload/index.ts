@@ -1,12 +1,16 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
-import { PreloadApi, UpdateThemeCallback } from './index-types';
+import { PreloadApi, UpdateLanguageCallback, UpdateThemeCallback } from './index-types';
 
 // Custom APIs for renderer
 const api: PreloadApi = {
   theme: {
     initialTheme: () => ipcRenderer.invoke('theme:init'),
     update: (callback: UpdateThemeCallback) => ipcRenderer.on('theme:update', callback)
+  },
+  language: {
+    initialLanguage: () => ipcRenderer.invoke('lang:init'),
+    update: (callback: UpdateLanguageCallback) => ipcRenderer.on('lang:update', callback)
   }
 };
 

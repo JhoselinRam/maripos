@@ -1,9 +1,10 @@
+import { Theme } from '@renderer/theme/theme-types';
 import { useEffect, useState } from 'react';
-import { UseTheme } from './theme-types';
+import { UseTheme } from './use-theme-types';
 
 export function useTheme(): UseTheme {
   //theme state
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<Theme>('light');
 
   //-------------------------------------------------
   //-------------------------------------------------

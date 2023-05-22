@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from '@renderer/theme/theme';
+import languageReducer from '@renderer/language/language';
 
 //Redux store to manage the whole app state
 const store = configureStore({
   reducer: {
-    theme: themeReducer
+    theme: themeReducer,
+    languge: languageReducer
   }
 });
 

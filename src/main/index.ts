@@ -69,7 +69,7 @@ app.whenReady().then(() => {
   const storeUtils = localStore(window);
 
   //Creates the menu bar
-  createMenu();
+  createMenu(window, storeUtils);
 
   //Set the app theme manually at startup
   storeUtils.setThemeFromStoreValue();
@@ -77,6 +77,7 @@ app.whenReady().then(() => {
   //Listen to initial theme
   ipcMain.handle('theme:init', storeUtils.themeUsed);
   //Listen to initial language
+  ipcMain.handle('lang:init', storeUtils.languageUsed);
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

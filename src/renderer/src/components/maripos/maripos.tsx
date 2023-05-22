@@ -4,12 +4,14 @@ import MainApp from './main-app/main-app';
 import { MariposProps } from './maripos-types';
 import { setTheme } from '@renderer/theme/theme';
 import { useEffect } from 'react';
+import { setLanguage } from '@renderer/language/language';
 
-function Maripos({ theme }: MariposProps): JSX.Element {
+function Maripos({ theme, language }: MariposProps): JSX.Element {
   //Keep updated the theme state in the store
   useEffect(() => {
     store.dispatch(setTheme(theme));
-  }, [theme]);
+    store.dispatch(setLanguage(language));
+  }, [theme, language]);
 
   //-------------------------------------------------
   //-------------------------------------------------

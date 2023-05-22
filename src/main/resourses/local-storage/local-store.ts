@@ -4,6 +4,7 @@ import { LocalStore, LocalStoreObject } from './local-theme-types';
 import { AllLanguages } from './language/languaje-types';
 import storeThemes from './themes/themes';
 import { BrowserWindow } from 'electron';
+import storeLanguage from './language/language';
 
 function localStore(window: BrowserWindow): LocalStoreObject {
   //Local store schema
@@ -28,11 +29,14 @@ function localStore(window: BrowserWindow): LocalStoreObject {
 
   //Theme functions
   const themes = storeThemes(store, window);
+  //Language functions
+  const lang = storeLanguage(store, window);
 
   //Retusrns all assets
   return {
     store,
-    ...themes
+    ...themes,
+    ...lang
   };
 }
 

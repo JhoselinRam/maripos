@@ -1,3 +1,4 @@
-import { UseTheme } from './resourses/theme-types';
+import { UseLanguage } from './resourses/language/use-language-types';
+import { UseTheme } from './resourses/theme/use-theme-types';
 
-export type UseMaripos = UseTheme;
+export interface UseMaripos extends UseTheme, UseLanguage {}
