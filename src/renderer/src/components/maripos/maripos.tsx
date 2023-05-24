@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import store from '@renderer/store/store';
-import MainApp from './main-app/main-app';
+import MainApp from './resourses/main-app/main-app';
 import { MariposProps } from './maripos-types';
 import { setTheme } from '@renderer/theme/theme';
 import { useEffect } from 'react';
